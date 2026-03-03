@@ -1,0 +1,37 @@
+body {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.calculator-container {
+    padding: 0.5rem;
+    border: solid 2px black;
+}
+
+.calculator-btns {
+    display: flex;
+    flex-direction: row;
+}
+
+.calculator-digits {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 200px;
+}
+
+.calculator-digits button {
+    width: 66.66px;
+    aspect-ratio: 1/1;
+}
+
+.calculator-operators {
+    display: flex;
+    flex-direction: column;
+}
+
+.calculator-operators button {
+    aspect-ratio: 2/3;
+    width: 30px;
+}
