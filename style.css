@@ -18,6 +18,12 @@ h1, footer p {
     border: solid 2px #355872;
 }
 
+.calculator-display {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
 .calculator-btns {
     display: flex;
     flex-direction: row;
@@ -29,9 +35,13 @@ h1, footer p {
     max-width: 200px;
 }
 
+
 .calculator-digits button {
     width: 66.66px;
     aspect-ratio: 1/1;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
 }
 
 .calculator-operators {
@@ -42,4 +52,7 @@ h1, footer p {
 .calculator-operators button {
     aspect-ratio: 2/3;
     width: 30px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
 }
