@@ -3,11 +3,16 @@ body {
     flex-direction: column;
     box-sizing: border-box;
     align-items: center;
+    background-color: #F7F8F0;
+}
+
+h1 {
+    color: #355872;
 }
 
 .calculator-container {
     padding: 0.5rem;
-    border: solid 2px black;
+    border: solid 2px #355872;
 }
 
 .calculator-btns {
