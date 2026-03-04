@@ -4,7 +4,9 @@ const calculatorOperators = document.querySelector(".calculator-operators");
 
 for (const digit in calculatorDigits.childNodes) {
     //TODO: acabar a implementação do metodo
-    digit.addEventListenner("click", writeDigit());
+    console.log(digit);
+    
+    digit.addEventListenner("click", writeDigit(e));
 }
 
 
@@ -12,7 +14,7 @@ function writeOperator (elem) {
     const displayText = calculatorDisplay.textContent;
     let splitDisplayText = displayText.split(" ");
     if(validateDisplayText(splitDisplayText)) {
-        calculatorDisplay.textContent = calculatorDisplay.textContent + ` ${elem.value} `;
+        calculatorDisplay.textContent = calculatorDisplay.textContent + ` ${elem.target.value} `;
         return;
     }
     inputError();
@@ -24,7 +26,7 @@ function writeDigit (elem) {
     let splitDisplayText = displayText.split(" ");
     if(validateDisplayText(splitDisplayText)) {
         //TODO: Atualizar elem.value pra versao completa
-        calculatorDisplay.textContent = calculatorDisplay.textContent + `${elem.value}`;
+        calculatorDisplay.textContent = calculatorDisplay.textContent + `${elem.target.value}`;
         return;
     }
     inputError();
@@ -74,7 +76,7 @@ function validateDisplayText (splittedArrayText) {
         for (const text of splittedArrayText) {
             if(isOperator(text)) count++;
         }
-        if(count > 1) return false
+        if(count > 0) return false
         return false
     }
 

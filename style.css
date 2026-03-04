@@ -44,12 +44,12 @@ h1, footer p {
     font-style: normal;
 }
 
-.calculator-operators {
+.calculator-functions {
     display: flex;
     flex-direction: column;
 }
 
-.calculator-operators button {
+.calculator-functions button {
     aspect-ratio: 2/3;
     width: 30px;
     font-family: "Poppins", sans-serif;
