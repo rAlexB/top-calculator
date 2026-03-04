@@ -2,11 +2,11 @@ const calculatorDisplay = document.querySelector(".calculator-display");
 const calculatorDigits = document.querySelector(".calculator-digits");
 const calculatorOperators = document.querySelector(".calculator-operators");
 
-for (const digit in calculatorDigits.childNodes) {
+for (const digit of calculatorDigits.children) {
     //TODO: acabar a implementação do metodo
     console.log(digit);
     
-    digit.addEventListenner("click", writeDigit(e));
+    digit.addEventListener("click", writeDigit);
 }
 
 
