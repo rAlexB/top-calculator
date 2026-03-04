@@ -8,15 +8,26 @@ for (const digit in calculatorDigits.childNodes) {
 }
 
 
+function writeOperator (elem) {
+    const displayText = calculatorDisplay.textContent;
+    let splitDisplayText = displayText.split(" ");
+    if(validateDisplayText(splitDisplayText)) {
+        calculatorDisplay.textContent = calculatorDisplay.textContent + ` ${elem.value} `;
+        return;
+    }
+    inputError();
+}
+
 //funcao mais simples, simplesmente add nr
 function writeDigit (elem) {
     const displayText = calculatorDisplay.textContent;
     let splitDisplayText = displayText.split(" ");
-    if(validateDisplayText(splitDisplayText)) {    
+    if(validateDisplayText(splitDisplayText)) {
+        //TODO: Atualizar elem.value pra versao completa
         calculatorDisplay.textContent = calculatorDisplay.textContent + `${elem.value}`;
+        return;
     }
-
-
+    inputError();
 }
 
 function isDigit (digit) {
@@ -58,11 +69,16 @@ function validateDisplayText (splittedArrayText) {
     } else if (isDigit(firstText)) {
         return true
     } else {
+        let count = 0;
+
+        for (const text of splittedArrayText) {
+            if(isOperator(text)) count++;
+        }
+        if(count > 1) return false
         return false
     }
 
-    //Welcome... |num + op | num + num
-    
+    return false
 }
 
 
