@@ -1,20 +1,19 @@
 const calculatorDisplay = document.querySelector(".calculator-display");
 const calculatorDigits = document.querySelector(".calculator-digits");
-const calculatorOperators = document.querySelector(".calculator-operators");
+const calculatorOperators = document.querySelectorAll(".calculator-operators");
 
 for (const digit of calculatorDigits.children) {
-    //TODO: acabar a implementação do metodo
-    console.log(digit);
-    
     digit.addEventListener("click", writeDigit);
 }
 
+for (const op of calculatorOperators) {
+    op.addEventListener("click", writeOperator);
+}
 
 function writeOperator (elem) {
     const displayText = calculatorDisplay.textContent;
-    let splitDisplayText = displayText.split(" ");
-    if(validateDisplayText(splitDisplayText)) {
-        calculatorDisplay.textContent = calculatorDisplay.textContent + ` ${elem.target.value} `;
+    if(validateDisplayText(splitDisplayContent(displayText), "O")) {
+        calculatorDisplay.textContent = calculatorDisplay.textContent + ` ${elem.target.textContent} `;
         return;
     }
     inputError();
@@ -23,13 +22,18 @@ function writeOperator (elem) {
 //funcao mais simples, simplesmente add nr
 function writeDigit (elem) {
     const displayText = calculatorDisplay.textContent;
-    let splitDisplayText = displayText.split(" ");
-    if(validateDisplayText(splitDisplayText)) {
-        //TODO: Atualizar elem.value pra versao completa
-        calculatorDisplay.textContent = calculatorDisplay.textContent + `${elem.target.value}`;
+    if(validateDisplayText(splitDisplayContent(displayText))) {
+        calculatorDisplay.textContent = calculatorDisplay.textContent + `${elem.target.textContent}`;
         return;
     }
     inputError();
+}
+
+function splitDisplayContent (text) {
+    return text
+    .trim()
+    .split(" ")
+    .map(str => str.split(""));
 }
 
 function isDigit (digit) {
@@ -53,8 +57,7 @@ function isOperator (operator) {
 
     for (const op of validOperators) {
         if(op === operator) {
-            returnArr[0] = op;
-            returnArr[1] = true;
+            return true;
         }
     }
 
@@ -62,25 +65,32 @@ function isOperator (operator) {
 }
 
 
-function validateDisplayText (splittedArrayText) {
-    const firstText = splittedArrayText[0];
+function validateDisplayText (splittedArrayText, flagValType = "D") {
+    const firstChar = splittedArrayText[0][0];
+    const firstText = splittedArrayText[0].join("");
     
+    //TODO: refactor this code (maybe in a switch statement) 
     if(firstText === "Welcome" || firstText === "Input") {
         calculatorDisplay.textContent = "";
-        return true;
-    } else if (isDigit(firstText)) {
-        return true
-    } else {
-        let count = 0;
+        
+        if(flagValType == "D") return true;
+        return false;
+
+    } else if(flagValType === "O") {
+        let count = 1;
 
         for (const text of splittedArrayText) {
-            if(isOperator(text)) count++;
+            if(isOperator(text[0])) count++;
         }
-        if(count > 0) return false
-        return false
+        if(count > 1) return false;
+        return true;
+
+    } else {
+        if(isDigit(firstChar)) return true;
+        
     }
 
-    return false
+    return false;
 }
 
 
