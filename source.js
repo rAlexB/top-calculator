@@ -1,6 +1,12 @@
 const calculatorDisplay = document.querySelector(".calculator-display");
 const calculatorDigits = document.querySelector(".calculator-digits");
 const calculatorOperators = document.querySelectorAll(".calculator-operators");
+const calculatorClear = document.querySelector(".calculator-clear");
+
+
+//TODO: find a way to how can I run those for loops when the DOM is loaded and not every time.
+
+calculatorClear.addEventListener("click", clearDisplay);
 
 for (const digit of calculatorDigits.children) {
     digit.addEventListener("click", writeDigit);
@@ -77,6 +83,8 @@ function validateDisplayText (splittedArrayText, flagValType = "D") {
         return false;
 
     } else if(flagValType === "O") {
+        if(firstChar == undefined) return false;
+        
         let count = 1;
 
         for (const text of splittedArrayText) {
@@ -85,16 +93,19 @@ function validateDisplayText (splittedArrayText, flagValType = "D") {
         if(count > 1) return false;
         return true;
 
-    } else {
-        if(isDigit(firstChar)) return true;
-        
+    } else if (isDigit(firstChar)){
+        return true;
     }
 
-    return false;
+    return true;
 }
 
 
 function inputError () {
     calculatorDisplay.textContent = "";
     calculatorDisplay.textContent = "Input is not valid...";
+}
+
+function clearDisplay () {
+    calculatorDisplay.textContent = "";
 }
