@@ -2,9 +2,12 @@ const calculatorDisplay = document.querySelector(".calculator-display");
 const calculatorDigits = document.querySelector(".calculator-digits");
 const calculatorOperators = document.querySelectorAll(".calculator-operators");
 const calculatorClear = document.querySelector(".calculator-clear");
+const calculatorEquals = document.querySelector(".caluclator-equals");
 
 
 //TODO: find a way to how can I run those for loops when the DOM is loaded and not every time.
+
+calculatorEquals.addEventListener("click", prepareCalculation);
 
 calculatorClear.addEventListener("click", clearDisplay);
 
@@ -100,6 +103,35 @@ function validateDisplayText (splittedArrayText, flagValType = "D") {
     return true;
 }
 
+function prepareCalculation() {
+    const displayContent = calculatorDisplay.textContent;
+    clearDisplay();
+    const operands = displayContent.trim().split(" ");
+
+    const firstNum = operands[0];
+    const operator = operands [1];
+    const secondNum = operands [2];
+
+    //TODO: lidar com o erro e se calhar concentrar alteracao de valores de display num metodo
+    const result = calculate(operator,+firstNum,+secondNum);
+    calculatorDisplay.textContent = result;
+
+}
+
+function calculate (op, fisrstValue, secondValue) {
+    switch(op){
+        case "+":
+            return fisrstValue + secondValue;
+        case "-":
+            return fisrstValue - secondValue;
+        case "*":
+            return fisrstValue * secondValue;
+        case "/":
+            return fisrstValue / secondValue;
+        default:
+            break;
+    }
+}         
 
 function inputError () {
     calculatorDisplay.textContent = "";
