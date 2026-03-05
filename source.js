@@ -114,7 +114,11 @@ function prepareCalculation() {
 
     //TODO: lidar com o erro e se calhar concentrar alteracao de valores de display num metodo
     const result = calculate(operator,+firstNum,+secondNum);
-    calculatorDisplay.textContent = result;
+    if(!(result == undefined)) {
+        calculatorDisplay.textContent = result;
+    } else {
+        inputError();
+    }
 
 }
 
