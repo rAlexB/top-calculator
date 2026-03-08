@@ -3,11 +3,11 @@ body {
     flex-direction: column;
     box-sizing: border-box;
     align-items: center;
-    background-color: #F7F8F0;
+    background-color: #6B9080;
 }
 
 h1, footer p {
-    color: #355872;
+    color: #F6FFF8;
     font-family: "Bungee Hairline", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -15,18 +15,27 @@ h1, footer p {
 
 .calculator-container {
     padding: 0.5rem;
-    border: solid 2px #355872;
+    border: solid 2px #A4C3B2;
+    background-color: #EAF4F4;
+    border-radius: 25px;
 }
 
 .calculator-display {
+    border: solid 2px #CCE3DE;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding-left: 10px;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-style: normal;
+    margin-bottom: 5px;
+    min-height: 24px;
+    min-width: 216px;
 }
 
 .calculator-btns {
     display: flex;
-    flex-direction: row;
+    flex-direction: row;   
 }
 
 .calculator-digits {
@@ -35,13 +44,13 @@ h1, footer p {
     max-width: 200px;
 }
 
-
 .calculator-digits button {
     width: 66.66px;
     aspect-ratio: 1/1;
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-style: normal;
+}
+
+.calculator-digits button:last-child{
+    border-bottom-left-radius: 15px;
 }
 
 .calculator-functions {
@@ -52,7 +61,15 @@ h1, footer p {
 .calculator-functions button {
     aspect-ratio: 2/3;
     width: 30px;
+}
+
+.calculator-functions button, .calculator-digits button  {
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-style: normal;
+    border: 1;
+}
+
+.calculator-functions button:last-child{
+    border-bottom-right-radius: 15px;   
 }
