@@ -4,12 +4,12 @@ const calculatorOperators = document.querySelectorAll(".calculator-operators");
 const calculatorClear = document.querySelector(".calculator-clear");
 const calculatorEquals = document.querySelector(".caluclator-equals");
 
+//TODO: preprar multiplas operaçoes (5+4 -2, analisar primeiro 5+4, depois o -2), nao esquecer da precedencia matemática
 
-//TODO: find a way to how can I run those for loops when the DOM is loaded and not every time.
-
-calculatorEquals.addEventListener("click", prepareCalculation);
-
-calculatorClear.addEventListener("click", clearDisplay);
+document.addEventListener("DOMContentLoaded", (event) => {
+    calculatorEquals.addEventListener("click", prepareCalculation);
+    calculatorClear.addEventListener("click", clearDisplay);
+});
 
 for (const digit of calculatorDigits.children) {
     digit.addEventListener("click", writeDigit);
@@ -131,6 +131,7 @@ function calculate (op, fisrstValue, secondValue) {
         case "*":
             return fisrstValue * secondValue;
         case "/":
+            if(secondValue == 0) break;
             return fisrstValue / secondValue;
         default:
             break;
