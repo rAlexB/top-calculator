@@ -192,15 +192,21 @@ function mathPriority (arr) {
     for(const elem of arr) {
         let index = arr.indexOf(elem);
 
-        if(isDigit(elem) && isOperator(arr[index + 1]) && arr.length == 2) {
+        /*if(isDigit(elem) && isOperator(arr[index + 1]) && arr.length == 2) {
+            orderedMathArr.push(...arr.splice((index + 1), 1));
+            orderedMathArr.push(...arr.splice((index), 1));*/
+        if(index == 0 && isDigit(elem)) {
             orderedMathArr.push(...arr.splice((index + 1), 1));
             orderedMathArr.push(...arr.splice((index), 1));
         } else if (arr.length == 2) {
-            orderedMathArr.push(...arr.splice(index), 2);
+            //orderedMathArr.push(...arr.splice((index), (arr.length - 1)));
+            orderedMathArr.push(...arr);
+            arr = [];
         }
+        
     }
 
-    orderedMathArr.push(...arr);
+    if(!(arr.length == 0)) orderedMathArr.push(...arr);
 
     return orderedMathArr;
 
